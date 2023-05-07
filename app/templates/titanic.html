@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My first dynamic Website</title>
+    <title>Titanic Data</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 
@@ -18,19 +18,18 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <h1>I have been seen {{ count }} times.</h1>
-        <ul>
-            {% for i in range(1, count+1) %}
-            <li>{{ i }}: Hello {{ name }}! </li>
-            {% endfor %}
-        </ul>
-        <a href="https://www.hwr-berlin.de">check out the HWR website here</a>
-        <img width="200" src="static/meme.jpg" alt="work in progress">
+        <h1>Titanic Data</h1>
+        <table>
+            {{ table|safe }}
+        </table>
+        <div>
+            {{ plot|safe }}
+        </div>
     </main>
+
     <footer>Gala Chaparro</footer>
 </body>
 
 </html>
-
-

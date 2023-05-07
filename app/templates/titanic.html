@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Titanic Data</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -24,12 +25,33 @@
         <table>
             {{ table|safe }}
         </table>
-        <div>
-            {{ plot|safe }}
-        </div>
+
+        <div id="bar-chart"></div>
     </main>
 
     <footer>Gala Chaparro</footer>
+
+    <script>
+        var maleSurvived = {{ male_survived }};
+        var femaleSurvived = {{ female_survived }};
+
+        var data = [
+            {
+                x: ['Male', 'Female'],
+                y: [maleSurvived, femaleSurvived],
+                type: 'bar'
+            }
+        ];
+
+        var layout = {
+            title: 'Survivors by Gender',
+            xaxis: {title: 'Gender'},
+            yaxis: {title: 'Number of Survivors'}
+        };
+
+        Plotly.newPlot('bar-chart', data, layout);
+    </script>
 </body>
 
 </html>
+

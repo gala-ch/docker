@@ -26,8 +26,13 @@ def hello():
 @app.route('/titanic')
 def titanic():
     df = pd.read_csv('titanic.csv')
+
+    # Calculate the number of male and female survivors
+    male_survived = df[(df['Sex'] == 'male') & (df['Survived'] == 1)]['Survived'].count()
+    female_survived = df[(df['Sex'] == 'female') & (df['Survived'] == 1)]['Survived'].count()
+
     table = df.head().to_html(index=False)
-    return render_template('titanic.html', table=table)
+    return render_template('titanic.html', table=table, male_survived=male_survived, female_survived=female_survived)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
